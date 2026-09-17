@@ -1,0 +1,51 @@
+{
+  "name": "@second-brain/api",
+  "private": true,
+  "type": "module",
+  "types": "./src/app.ts",
+  "exports": {
+    ".": {
+      "types": "./src/app.ts",
+      "default": "./src/app.ts"
+    }
+  },
+  "scripts": {
+    "dev": "pnpm --parallel --stream run \"/^dev:(api|worker)$/\"",
+    "dev:api": "tsx watch src/index.ts",
+    "dev:worker": "tsx watch src/worker.ts",
+    "build": "tsc --noEmit",
+    "test": "tsx --test src/modules/knowledge/*.test.ts src/modules/chats/*.test.ts src/modules/artifacts/*.test.ts",
+    "start": "tsx src/index.ts",
+    "worker": "tsx src/worker.ts",
+    "lint": "oxlint .",
+    "format": "oxfmt .",
+    "format:check": "oxfmt --check .",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:seed": "tsx src/db/seed.ts"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.1134.0",
+    "@aws-sdk/client-sqs": "^3.1134.0",
+    "@hono/node-server": "^1.19.0",
+    "@huggingface/transformers": "^4.3.0",
+    "@langchain/anthropic": "^1.5.10",
+    "@langchain/core": "^1.2.11",
+    "@langchain/textsplitters": "^1.0.1",
+    "dotenv": "^16.5.0",
+    "drizzle-orm": "^0.44.0",
+    "gray-matter": "^4.0.3",
+    "hono": "^4.9.0",
+    "pg": "^8.16.0",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/pg": "^8.15.0",
+    "drizzle-kit": "^0.31.0",
+    "oxfmt": "^0.15.0",
+    "oxlint": "^1.15.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.8.0"
+  }
+}

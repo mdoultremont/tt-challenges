@@ -1,0 +1,22 @@
+{
+  "name": "second-brain",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm --parallel --stream --filter @second-brain/frontend --filter @second-brain/api run dev",
+    "build": "pnpm -r build",
+    "lint": "pnpm -r lint",
+    "format": "oxfmt --write package.json .oxfmtrc.json oxlint.json && pnpm -r format",
+    "format:check": "oxfmt --check package.json .oxfmtrc.json oxlint.json && pnpm -r format:check"
+  },
+  "devDependencies": {
+    "oxfmt": "^0.68.0",
+    "oxlint": "^1.83.0"
+  },
+  "packageManager": "pnpm@9.14.2",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "lightningcss"
+    ]
+  }
+}

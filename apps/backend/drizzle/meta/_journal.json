@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1789660592260,
+      "tag": "0000_curly_weapon_omega",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1789663297131,
+      "tag": "0001_whole_tyger_tiger",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1789663826915,
+      "tag": "0002_warm_umar",
+      "breakpoints": true
+    }
+  ]
+}

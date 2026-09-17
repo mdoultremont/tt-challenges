@@ -1,0 +1,25 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash scripts/export-transcript.sh; printf '{}'",
+            "statusMessage": "Exporting session transcript to prompts/"
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash scripts/export-transcript.sh"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -38,6 +38,19 @@ make up                  # starts the backing services: Postgres+pgvector, MinIO
 
 That gives you running, **empty** infrastructure (see [STACK.md](STACK.md) for ports and credentials). The schema, buckets, queues, services, and app are yours to create.
 
+In a second terminal, install dependencies, apply the schema and seed the fund/portco records, then start the frontend, API, and ingestion worker together:
+
+```bash
+pnpm install
+pnpm --filter @second-brain/api db:migrate
+pnpm --filter @second-brain/api db:seed
+pnpm dev
+```
+
+The frontend runs on `http://localhost:3000`, the API on `http://localhost:8787`, and `pnpm dev` stops all three processes together with Ctrl-C.
+
+The first document ingestion downloads the local `Xenova/all-MiniLM-L6-v2` embedding model into `HF_CACHE_DIR` (default `./.cache/huggingface`). No hosted embedding service is used.
+
 ## Timebox — 2 to 3 hours
 
 We mean it. A rough shape that works:

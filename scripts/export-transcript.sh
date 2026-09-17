@@ -1,19 +1,20 @@
 #!/usr/bin/env bash
-# Auto-export the current Claude Code session transcript into prompts/.
+# Auto-export the current agent session transcript into prompts/.
 #
-# Wired as a Stop + SessionEnd hook in .claude/settings.json. Claude Code hands
-# the hook a JSON payload on stdin that carries `transcript_path` and
-# `session_id`; this copies that transcript to prompts/raw-session-<id>.jsonl.
+# Wired as a Stop + SessionEnd hook in .claude/settings.json and .codex/hooks.json.
+# Claude Code and Codex hand the hook a JSON payload on stdin that carries
+# `transcript_path` and `session_id`; this copies that transcript to
+# prompts/raw-session-<id>.jsonl.
 #
 # Why it's here: the take-home asks you to commit your raw AI session logs to
 # prompts/ — we read them as the source of truth. This removes the manual step:
-# every time Claude Code stops or the session ends, the latest full transcript
+# every time the agent stops or the session ends, the latest full transcript
 # is copied in, overwriting the same per-session file. Idempotent; re-running is
 # safe, so prompts/ always holds the current transcript for each session.
 #
 # Non-fatal by design: any failure exits 0 so it can never interrupt your work.
-# Only fires under Claude Code. On Cursor / Codex / another tool, export your
-# transcript into prompts/ by hand (see PROMPTS.md) — same destination.
+# On tools with a different hook contract, export your transcript into prompts/
+# by hand (see PROMPTS.md) — same destination.
 set -euo pipefail
 
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
